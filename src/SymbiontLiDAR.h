@@ -29,14 +29,16 @@ License: GNU GPL v3. You should find a copy in the repository.
 #define sensitivityLow 2
 #define sensitivityMaxRange 3
 /**
- * @class Class to interface with the SymbiontLiDAR module.
- * @brief Library to communicate with the SymbiontLiDAR module, which connects
- * to a LiDAR Lite rangefinder.
- * @details The Symbiont is equipped with capacitors to handle the large burst 
- * power draw from the LiDAR Lite, a MEMS accelerometer to note its orientation,
- * a magnet to note a known orientation (often, but not necessarily, horizontal)
- * and the ability to absorb occasional firmware issues that lead to system
- * hangs. The leveling helps the user to calculate, for example, a water level
+ * @class SymbiontLiDAR Class to Interface with the SymbiontLiDAR module.
+ * @brief Arduino library for the Symbiont board, which manages a LiDAR Lite
+ * unit (roll/pitch, firmware lock/reset, power supply).
+ * @details Library to communicate with the SymbiontLiDAR module, which 
+ * connects to a LiDAR Lite rangefinder.The Symbiont is equipped with
+ * capacitors to handle the large burst power draw from the LiDAR Lite, a MEMS 
+ * accelerometer to note its orientation, a magnet to note a known orientation 
+ * (often, but not necessarily, horizontal)  and the ability to absorb
+ * occasional firmware issues that lead to system hangs.
+ * The leveling helps the user to calculate, for example, a water level
  * when the sensor is palced on a cliff a tree next to the river but does not
  * have water below it. The level loses absolute accuracy when near plumb, so
  * a Hall-effect sensor connected to the magnet allows the user to set a zero
@@ -109,7 +111,7 @@ class SymbiontLiDAR
          * String(Range) + "," + String(Pitch) + "," + String(Roll) + ","
          * Error values are "-9999" (sensor error) and "-9998" (no measurement 
          * yet taken")
-         * @param[i] takeNewReadings: if `true` run `updateMeasurements` before
+         * @param[in] takeNewReadings: if `true` run `updateMeasurements` before
          * returning values. Otherwise, just return values.
          */
         String getString(bool takeNewReadings = false);
@@ -121,6 +123,8 @@ class SymbiontLiDAR
 
         /**
          * @brief CapitalCase version of getString() for backwards compatibility
+         * @param[in] takeNewReadings: if `true` run `updateMeasurements` before
+         * returning values. Otherwise, just return values.
          */    
         String GetString(bool takeNewReadings = false);
 
