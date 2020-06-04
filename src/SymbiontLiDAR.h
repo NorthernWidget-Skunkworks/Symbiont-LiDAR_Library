@@ -141,7 +141,7 @@ class SymbiontLiDAR
         static float Roll = -9998;
         
         // Sensor sensitivity; set initially to default "balanced" mode
-        static uint8_t sensitivity = sensitivityBalanced;
+        const static uint8_t sensitivity = sensitivityBalanced;
 };
 
 #endif
