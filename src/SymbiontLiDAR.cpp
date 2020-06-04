@@ -4,18 +4,15 @@ SymbiontLiDAR::SymbiontLiDAR()
 {
 }
 
-
-// SET SENSITIVITY IN BEGIN FUNCTION!
-// DECLARE VARIABLES IN HEADER HIGH_SENSITIVITY, MEDIUM_SENSITIVITY, ETC.
-    Wire.beginTransmission(0x40);
-    Wire.write(0x01);
-    Wire.write(0x00); //Set for high sensitivity
-    Wire.endTransmission();
-
 void SymbiontLiDAR::begin(uint8_t ADR_, uint8_t Sensitivity)
 {
+    // Set address and sensitivity
     ADR = ADR_;
     Wire.begin();
+    Wire.beginTransmission(ADR_);
+    Wire.write(0x01);
+    Wire.write(Sensitivity);
+    Wire.endTransmission();
 }
 
 bool SymbiontLiDAR::updateMeasurements(){
