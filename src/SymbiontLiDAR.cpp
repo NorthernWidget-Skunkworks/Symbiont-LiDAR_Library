@@ -72,12 +72,12 @@ bool SymbiontLiDAR::updateMeasurements(){
     // Error return value = -9999.
 
     // Errors in range if <0
-    if (Range[0] < 0) {
-        Range[0] = -9999;
+    if (Range < 0) {
+        Range = -9999;
     }
 
     // Errors in g if all -1
-    if(gX == gY && gX == gZ && gx == -1) {  
+    if(gX == gY && gX == gZ && gX == -1) {  
         Pitch = -9999;
         Roll = -9999;
     }
@@ -87,11 +87,11 @@ bool SymbiontLiDAR::updateMeasurements(){
         // Do not include angle calc for offset when offset is 0
         // (Results in NAN value)
         Pitch = atan(-gX/gZ)*180./3.14;
-        Roll = atan( gY / (sqrt( pow(ValX, 2) + pow(gZ, 2) )) )*180./3.14;
+        Roll = atan( gY / (sqrt( pow(gX, 2) + pow(gZ, 2) )) )*180./3.14;
     }
     else {
         Pitch = ( atan(-gX/gZ) - atan(-OffsetX/OffsetZ) ) * 180./3.14;
-        Roll = ( atan(gY / (sqrt( pow(ValX, 2) + pow(ValZ, 2) )) ) - \
+        Roll = ( atan(gY / (sqrt( pow(gX, 2) + pow(gZ, 2) )) ) - \
                  - atan(OffsetY \
                          / (sqrt( pow(OffsetX, 2) + pow(OffsetZ, 2) )) ) ) \
                  * 180./3.14;
@@ -141,5 +141,4 @@ String SymbiontLiDAR::GetString(bool takeNewReadings) {
 String SymbiontLiDAR::GetHeader() {
     return getHeader();
 }
-
 
