@@ -21,7 +21,7 @@ License: GNU GPL v3. You should find a copy in the repository.
 #include <Arduino.h>
 #include <Wire.h>
 
-#define ADR_DEFAULT 0x40 // Define default address. But this clashes with Haar.
+#define ADR_DEFAULT 0x50 // Define default address.
 
 // Sensitivity
 #define sensitivityBalanced 0
@@ -57,7 +57,7 @@ class SymbiontLiDAR
         /**
          * @brief Begin communications with the Symbiont using a prescribed
          * address.
-         * @param Addresss_ default 0x40
+         * @param Addresss_ default 0x50
          * DOES NOT YET USE A VARIABLE ADDRESS!
          * DOES NOT MATTER WHAT YOU WRITE HERE.
          * THIS DEFAULT ADDRESS CURRENTLY CLASHES WITH HAAR'S DEFAULT!
